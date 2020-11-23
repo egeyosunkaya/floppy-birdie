@@ -3,9 +3,9 @@
 
 
 TODO: 
-- [] Add Collisions
-- [] Add Gameover
+- [x] Add Collisions
+- [x] Add Gameover
 - [] Add Scoreboard
-- [] Add Menu
+- [x] Add Menu
 - [] Better Rolling Background 
 - [] Add bird fly animation
