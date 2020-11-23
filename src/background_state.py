@@ -73,7 +73,7 @@ class PipeFactory:
 class BackgroundImage:
 
     def __init__(self):
-        self.sprite = pygame.transform.scale(pygame.image.load("assets/cityback1.png"),
+        self.sprite = pygame.transform.scale(pygame.image.load("assets/background.jpg"),
             (int(GlobalVars.get_screen_size().x), int(GlobalVars.get_screen_size().y)),
          )
         self.location = Vector2(0,0)
@@ -85,3 +85,12 @@ class Pipe:
         self.sprite = sprite
         self.location = location 
         self.texture_rect = texture_rect
+        self.bitmask = pygame.mask.from_surface(self.sprite)
+
+    def get_collision_box(self):
+
+        return self.sprite.get_bounding_rect(min_alpha=1).move(self.location.elementwise() * GlobalVars.get_cell_size())
+        # return Rect(
+        #     (self.location + Vector2(1.3, 0)).elementwise() * GlobalVars.get_cell_size(),
+        #     (self.texture_rect.size[0] * 0.375, self.texture_rect.size[1] * 0.9)
+        # )

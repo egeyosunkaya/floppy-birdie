@@ -1,7 +1,8 @@
 import logging
 from pygame.math import Vector2
 from pygame import Rect, image
-
+from global_vars import GlobalVars
+import pygame
 
 class BirdState:
 
@@ -20,6 +21,7 @@ class BirdState:
         self.bird_position = Vector2(2,3)
         self.bird_sprite = image.load("assets/Bird2.png")
         self.texture_rect = Rect(0,0, 96, 96)
+        self.bitmask = pygame.mask.from_surface(self.bird_sprite)
 
     def update(self, move_command):
 
@@ -44,3 +46,9 @@ class BirdState:
 
     def get_move_vector(self):
         return Vector2(self.Vx, self.Vy)
+
+    def get_collision_box(self):
+
+        return self.bird_sprite.get_bounding_rect(min_alpha=1).move(self.bird_position.elementwise() * GlobalVars.get_cell_size())
+
+            
